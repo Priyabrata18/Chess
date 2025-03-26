@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Chess Board with Pieces</title>
+<style>
+  .chess-board {
+    border: 2px solid black;
+    width: 400px;
+    height: 400px;
+    display: grid;
+    grid-template-columns: repeat(8, 50px);
+    grid-template-rows: repeat(8, 50px);
+  }
+
+  .square {
+    width: 50px;
+    height: 50px;
+    display: flex; /*for centering pieces*/
+    justify-content: center;
+    align-items: center;
+    font-size: 30px; /*size of chess piece character*/
+  }
+
+  .white {
+    background-color: white;
+  }
+
+  .black {
+    background-color: black;
+  }
+
+  .piece{
+    user-select: none; /*prevent text selection*/
+  }
+
+</style>
+</head>
+<body>
+
+<div class="chess-board" id="chessBoard"></div>
+
+<script>
+  const chessBoard = document.getElementById('chessBoard');
+  const boardState = [
+    ['&#9814;', '&#9816;', '&#9815;', '&#9813;', '&#9812;', '&#9815;', '&#9816;', '&#9814;'],
+    ['&#9817;', '&#9817;', '&#9817;', '&#9817;', '&#9817;', '&#9817;', '&#9817;', '&#9817;'],
+    ['', '', '', '', '', '', '', ''],
+    ['', '', '', '', '', '', '', ''],
+    ['', '', '', '', '', '', '', ''],
+    ['', '', '', '', '', '', '', ''],
+    ['&#9823;', '&#9823;', '&#9823;', '&#9823;', '&#9823;', '&#9823;', '&#9823;', '&#9823;'],
+    ['&#9820;', '&#9822;', '&#9821;', '&#9819;', '&#9818;', '&#9821;', '&#9822;', '&#9820;'],
+  ];
+
+  for (let row = 0; row < 8; row++) {
+    for (let col = 0; col < 8; col++) {
+      const square = document.createElement('div');
+      square.classList.add('square');
+
+      if ((row + col) % 2 === 0) {
+        square.classList.add('white');
+      } else {
+        square.classList.add('black');
+      }
+
+      if (boardState[row][col]) {
+        square.innerHTML = `<span class='piece'>${boardState[row][col]}</span>`;
+      }
+
+      chessBoard.appendChild(square);
+    }
+  }
+</script>
+
+</body>
+</html>
